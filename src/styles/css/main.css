@@ -146,8 +146,16 @@ body {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 .hidden {
   display: hidden;
+}
+
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=main.css.map */

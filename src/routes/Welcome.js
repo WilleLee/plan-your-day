@@ -18,7 +18,7 @@ export default function Welcome() {
   return (
     <Container>
       <MessageWelcome>Thanks for Coming!</MessageWelcome>
-      <Link to="/">
+      <Link to="/plan-your-day/home">
         <p
           style={{
             color: "#fff",
