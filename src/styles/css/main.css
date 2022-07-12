@@ -149,10 +149,6 @@ a {
   color: inherit;
 }
 
-.hidden {
-  display: hidden;
-}
-
 .flex-column-center {
   display: flex;
   flex-direction: column;

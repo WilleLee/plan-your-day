@@ -8,7 +8,7 @@ const Title = styled.h1`
 
 export default function Header() {
   return (
-    <header>
+    <header style={{ marginBottom: "20px" }}>
       <Title>PLAN YOUR DAY</Title>
     </header>
   );

@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
+//components
 import Header from "../components/Header";
 import LogIn from "../components/LogIn";
+import PlanToDos from "../components/PlanToDos";
 
 const Container = styled.div`
   margin-top: 50px;
@@ -15,15 +17,13 @@ function Home({ loggedInUser }) {
   useEffect(() => {
     const { loggedIn } = loggedInUser;
     setLoggedInState(loggedIn);
-    console.log(loggedIn);
+    //console.log(loggedIn);
   }, [loggedInUser]);
 
   return (
     <Container>
-      {loggedInState ? <h1>logged in!</h1> : <LogIn />}
-      <br />
-
       <Header />
+      {loggedInState ? <PlanToDos /> : <LogIn />}
     </Container>
   );
 }
