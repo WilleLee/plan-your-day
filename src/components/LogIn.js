@@ -28,7 +28,7 @@ function LogIn({ login }) {
     <LogInForm className="flex-column-center" onSubmit={onSubmit}>
       <input
         type="text"
-        placeholder="Type Your Nicknmae"
+        placeholder="Type Your Nickname"
         onChange={onChange}
         minLength={2}
         maxLength={12}
