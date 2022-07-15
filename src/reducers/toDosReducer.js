@@ -32,10 +32,22 @@ const toDosSlice = createSlice({
       localStorage.removeItem(TODOS_KEY);
       return [];
     },
+    checkCompleted: (toDos, action) => {
+      //id를 받자
+      const newToDos = toDos.map((toDo) => {
+        if (parseInt(toDo.id) === action.payload)
+          return { text: toDo.text, id: toDo.id, completed: true };
+        else return toDo;
+      });
+      const json = JSON.stringify(newToDos);
+      localStorage.setItem(TODOS_KEY, json);
+      return newToDos;
+    },
   },
 });
 
 const toDosReducer = toDosSlice.reducer;
-export const { addToDo, removeToDo, removeAll } = toDosSlice.actions;
+export const { addToDo, removeToDo, removeAll, checkCompleted } =
+  toDosSlice.actions;
 
 export default toDosReducer;

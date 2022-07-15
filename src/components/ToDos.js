@@ -5,7 +5,12 @@ const ToDos = ({ toDos }) => {
   return (
     <ul style={{ marginBottom: "5px" }}>
       {toDos.map((toDo, i) => (
-        <ToDo key={i} text={toDo.text} id={toDo.id} />
+        <ToDo
+          key={i}
+          text={toDo.text}
+          id={toDo.id}
+          completed={toDo.completed}
+        />
       ))}
     </ul>
   );

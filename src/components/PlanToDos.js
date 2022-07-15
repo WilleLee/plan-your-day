@@ -6,6 +6,11 @@ import AddToDo from "./AddToDo";
 import ToDos from "./ToDos";
 import CheckOut from "./CheckOut";
 import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 const H2 = styled.h2`
   margin-bottom: 10px;
@@ -26,7 +31,8 @@ function PlanToDos({ loggedInUser, removeAll, len }) {
   return (
     <div className="flex-column-center">
       <H2>
-        <span>hello, </span>
+        <FontAwesomeIcon icon={faChevronLeft} />
+        <span> hello, </span>
         <span
           style={{ cursor: "pointer" }}
           onClick={() => {
@@ -35,7 +41,8 @@ function PlanToDos({ loggedInUser, removeAll, len }) {
         >
           {loggedInUser.username}
         </span>
-        <span> 👋🏻</span>
+        <span> 👋🏻 </span>
+        <FontAwesomeIcon icon={faChevronRight} />
       </H2>
       {!checkout ? null : <CheckOut />}
       <ToDosContainer className="flex-column-center">
