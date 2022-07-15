@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/plan-your-day/static/css/main.18df649c.css",
-    "main.js": "/plan-your-day/static/js/main.067f8324.js",
+    "main.js": "/plan-your-day/static/js/main.0a77b3d8.js",
     "static/js/787.6bc8754a.chunk.js": "/plan-your-day/static/js/787.6bc8754a.chunk.js",
     "index.html": "/plan-your-day/index.html",
     "main.18df649c.css.map": "/plan-your-day/static/css/main.18df649c.css.map",
-    "main.067f8324.js.map": "/plan-your-day/static/js/main.067f8324.js.map",
+    "main.0a77b3d8.js.map": "/plan-your-day/static/js/main.0a77b3d8.js.map",
     "787.6bc8754a.chunk.js.map": "/plan-your-day/static/js/787.6bc8754a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.18df649c.css",
-    "static/js/main.067f8324.js"
+    "static/js/main.0a77b3d8.js"
   ]
 }
