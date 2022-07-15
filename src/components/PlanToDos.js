@@ -1,28 +1,70 @@
+import { useState } from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
+import { removeAll } from "../reducers/toDosReducer";
 import AddToDo from "./AddToDo";
 import ToDos from "./ToDos";
+import CheckOut from "./CheckOut";
+import { Button } from "react-bootstrap";
 
-function PlanToDos({ loggedInUser }) {
+const H2 = styled.h2`
+  margin-bottom: 10px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+const ToDosContainer = styled.div`
+  border: 2px solid #ffcc00;
+  padding: 20px;
+`;
+
+function PlanToDos({ loggedInUser, removeAll, len }) {
+  const [checkout, setCheckout] = useState(false);
   return (
     <div className="flex-column-center">
-      <h2
-        style={{
-          marginBottom: "10px",
-        }}
-      >
-        hello, {loggedInUser}
-      </h2>
-      <AddToDo />
-      <ToDos />
+      <H2>
+        <span>hello, </span>
+        <span
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            setCheckout((prev) => !prev);
+          }}
+        >
+          {loggedInUser.username}
+        </span>
+        <span> 👋🏻</span>
+      </H2>
+      {!checkout ? null : <CheckOut />}
+      <ToDosContainer className="flex-column-center">
+        <AddToDo />
+        <ToDos />
+        {!(len > 0) ? null : (
+          <Button
+            variant="outline-secondary"
+            onClick={() => {
+              removeAll();
+            }}
+          >
+            Complete Your Day
+          </Button>
+        )}
+      </ToDosContainer>
     </div>
   );
 }
 
-function mapStateToProps(state) {
-  //console.log(state.loggedInReducer);
-  return {
-    loggedInUser: state.loggedInReducer.username,
-  };
-}
+const mapStateToProps = (state) => {
+  const todos = state.toDosReducer;
+  return { len: todos.length };
+};
 
-export default connect(mapStateToProps)(PlanToDos);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeAll: () => dispatch(removeAll()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlanToDos);

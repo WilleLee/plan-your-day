@@ -23,7 +23,7 @@ function Home({ loggedInUser }) {
   return (
     <Container>
       <Header />
-      {loggedInState ? <PlanToDos /> : <LogIn />}
+      {loggedInState ? <PlanToDos loggedInUser={loggedInUser} /> : <LogIn />}
     </Container>
   );
 }

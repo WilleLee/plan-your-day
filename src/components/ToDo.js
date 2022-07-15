@@ -31,7 +31,7 @@ const ToDo = ({ text, id, removeToDo }) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log(ownProps.id);
+  //console.log(ownProps.id);
   return { removeToDo: () => dispatch(removeToDo(ownProps.id)) };
 };
 

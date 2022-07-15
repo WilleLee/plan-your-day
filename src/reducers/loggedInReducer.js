@@ -19,7 +19,7 @@ const loggedInSlice = createSlice({
       localStorage.setItem(USERNAME_KEY, json);
       return newUser;
     },
-    logout: (loggedInUser) => {
+    logout: () => {
       localStorage.removeItem(USERNAME_KEY);
       return { username: "", loggedIn: false };
     },

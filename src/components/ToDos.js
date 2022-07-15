@@ -3,7 +3,7 @@ import ToDo from "./ToDo";
 
 const ToDos = ({ toDos }) => {
   return (
-    <ul>
+    <ul style={{ marginBottom: "5px" }}>
       {toDos.map((toDo, i) => (
         <ToDo key={i} text={toDo.text} id={toDo.id} />
       ))}

@@ -6,7 +6,6 @@ const reducer = {
   loggedInReducer,
   toDosReducer,
 };
-const loggedInStore = configureStore({ reducer });
-//console.log(loggedInSlice.getInitialState());
+const store = configureStore({ reducer });
 
-export default loggedInStore;
+export default store;

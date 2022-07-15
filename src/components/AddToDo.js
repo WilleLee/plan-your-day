@@ -2,6 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { addToDo } from "../reducers/toDosReducer";
+import { Button } from "react-bootstrap";
 
 const Input = styled.input`
   text-align: center;
@@ -12,11 +13,11 @@ const Input = styled.input`
   font-size: 18px;
   margin-bottom: 10px;
 `;
-
+/*
 const Button = styled.button`
   padding: 5px 7px;
 `;
-
+*/
 const AddToDo = ({ addToDo }) => {
   const [toDoTyped, setToDoTyped] = useState("");
   const onChange = (e) => {
@@ -49,7 +50,9 @@ const AddToDo = ({ addToDo }) => {
         maxLength={15}
         required
       />
-      <Button type="submit">Add A Plan</Button>
+      <Button type="submit" variant="outline-warning">
+        Add A Plan
+      </Button>
     </form>
   );
 };

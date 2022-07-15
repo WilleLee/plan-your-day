@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { login } from "../reducers/loggedInReducer";
 
 const LogInForm = styled.form`
   margin-top: 40px;
-  gap: 10px;
+  gap: 15px;
 `;
 
 function LogIn({ login }) {
@@ -38,16 +39,9 @@ function LogIn({ login }) {
           textAlign: "center",
         }}
       />
-      <button
-        type="submit"
-        style={{
-          padding: "3px 3px",
-          backgroundColor: "rgba(255,255,255,0.8)",
-          border: "none",
-        }}
-      >
-        Sign In
-      </button>
+      <Button variant="outline-warning" type="submit">
+        Check In
+      </Button>
     </LogInForm>
   );
 }

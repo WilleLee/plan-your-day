@@ -12,7 +12,10 @@ const toDosSlice = createSlice({
   initialState: defineCurrentToDos(),
   reducers: {
     addToDo: (toDos, action) => {
-      const newToDos = [{ text: action.payload, id: Date.now() }, ...toDos];
+      const newToDos = [
+        { text: action.payload, id: Date.now(), completed: false },
+        ...toDos,
+      ];
       const json = JSON.stringify(newToDos);
       localStorage.setItem(TODOS_KEY, json);
       return newToDos;
@@ -25,10 +28,14 @@ const toDosSlice = createSlice({
       localStorage.setItem(TODOS_KEY, json);
       return newToDos;
     },
+    removeAll: () => {
+      localStorage.removeItem(TODOS_KEY);
+      return [];
+    },
   },
 });
 
 const toDosReducer = toDosSlice.reducer;
-export const { addToDo, removeToDo } = toDosSlice.actions;
+export const { addToDo, removeToDo, removeAll } = toDosSlice.actions;
 
 export default toDosReducer;
