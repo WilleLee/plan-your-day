@@ -32,6 +32,7 @@ function LogIn({ login }) {
         onChange={onChange}
         minLength={2}
         maxLength={12}
+        required
         style={{
           padding: "5px 5px",
           borderRadius: "10px",

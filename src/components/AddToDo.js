@@ -13,11 +13,7 @@ const Input = styled.input`
   font-size: 18px;
   margin-bottom: 10px;
 `;
-/*
-const Button = styled.button`
-  padding: 5px 7px;
-`;
-*/
+
 const AddToDo = ({ addToDo }) => {
   const [toDoTyped, setToDoTyped] = useState("");
   const onChange = (e) => {
@@ -38,7 +34,9 @@ const AddToDo = ({ addToDo }) => {
   return (
     <form
       className="flex-column-center"
-      style={{ marginBottom: "15px" }}
+      style={{
+        marginBottom: "10px",
+      }}
       onSubmit={onSubmit}
     >
       <Input

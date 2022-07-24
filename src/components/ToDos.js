@@ -1,9 +1,10 @@
 import { connect } from "react-redux";
+import styled from "styled-components";
 import ToDo from "./ToDo";
 
 const ToDos = ({ toDos }) => {
   return (
-    <ul style={{ marginBottom: "5px" }}>
+    <ul className="flex-column-center" style={{ marginBottom: "5px" }}>
       {toDos.map((toDo, i) => (
         <ToDo
           key={i}

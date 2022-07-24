@@ -1,7 +1,7 @@
-import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import styled, { keyframes } from "styled-components";
 import { logout } from "../reducers/loggedInReducer";
+import PdyButton from "../styled-components/PdyButton";
 
 const sectionAppear = keyframes`
   from {
@@ -21,9 +21,9 @@ const Section = styled.section`
 const CheckOut = ({ logout }) => {
   return (
     <Section>
-      <Button variant="outline-secondary" size="sm" onClick={logout}>
+      <PdyButton variant="#ccc" className="pretty-button" onClick={logout}>
         Check Out!
-      </Button>
+      </PdyButton>
     </Section>
   );
 };

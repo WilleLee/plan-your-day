@@ -5,12 +5,12 @@ import { removeAll } from "../reducers/toDosReducer";
 import AddToDo from "./AddToDo";
 import ToDos from "./ToDos";
 import CheckOut from "./CheckOut";
-import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import PdyButton from "../styled-components/PdyButton";
 
 const H2 = styled.h2`
   margin-bottom: 10px;
@@ -49,14 +49,14 @@ function PlanToDos({ loggedInUser, removeAll, len }) {
         <AddToDo />
         <ToDos />
         {!(len > 0) ? null : (
-          <Button
-            variant="outline-secondary"
+          <PdyButton
+            variant="#ccc"
             onClick={() => {
               removeAll();
             }}
           >
             Complete Your Day
-          </Button>
+          </PdyButton>
         )}
       </ToDosContainer>
     </div>

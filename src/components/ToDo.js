@@ -36,7 +36,15 @@ const ToDoText = styled.span.attrs((props) => ({
 
 const ToDo = ({ text, id, completed, removeToDo, checkCompleted }) => {
   return (
-    <li className="flex-row-center" style={{ marginBottom: "5px" }} id={id}>
+    <li
+      style={{
+        width: "100%",
+        marginBottom: "5px",
+        display: "flex",
+        justifyContent: "space-between",
+      }}
+      id={id}
+    >
       <ToDoText done={completed ? 0.5 : 1}>{text}</ToDoText>
       <IcosContainer className="flex-row-center">
         {completed ? null : (
