@@ -12,9 +12,9 @@
 
 ### States Management by Redux
 
-#### Two Different States Needed to be Managed
+#### (1) Two Different States Needed to be Managed
 
-This project aims at handling two different states, one that lets users log in or out, and the another that manages the to-do list of the application listening to users' I/O. The first thing to do to make this possible is to create two redux slices using @reduxjs/toolkit module in order to use varied reducers and actions.
+This project aims at handling two different states, one that lets users log in or out, and the another that manages the to-do list of the application listening to users' I/O. The first thing to do to make this possible is to create two redux slices using _@reduxjs/toolkit_ module in order to use varied reducers and actions.
 
 ```
 npm install @reduxjs/toolkit
@@ -74,8 +74,113 @@ export default loggedInReducer;
 // (3) export the reducer as a default
 ```
 
-The another redux slice, toDoReducer is also created in the same way.
+The another redux slice, _toDoReducer_, is also created in the same way.
+
+#### (2) Configure Store with Different Reducers and Send This to Other Components through Provider Offered by react-redux
+
+Now it is needed to configure a store that contains those two kinds of reducers. This could be done by using _configureStore_ method from _@reduxjs/toolkit_.
 
 ```javascript
+// ./src/store.js
+import { configureStore } from "@reduxjs/toolkit";
+import loggedInReducer from "./reducers/loggedInReducer";
+import toDosReducer from "./reducers/toDosReducer";
 
+const reducer = {
+  loggedInReducer,
+  toDosReducer,
+};
+const store = configureStore({ reducer });
+
+export default store;
+```
+
+Here the store.js file exports a store as default, and since the store must be accessible from other components of the application, Provider that delivers the store should be imported from _react-redux_ and wrap the other parts of the app.
+
+```javascript
+// ./src/index.js
+/*
+...
+*/
+//redux
+import { Provider } from "react-redux";
+import store from "./store";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}> {/* <---- */}
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>
+);
+```
+
+#### (3) Send States and Actions of Reducers as Props to React Components
+
+Then it is possible to access states or actions of reducers on react components, meaning that components could receive those data as props to themselves, and that process requires to build _mapStateToProps_ and _mapDispatchToProps_ functions that return objects that contain properties modifed by those states and actions so that _connect_ method from _react-redux_ module could them with the components.
+
+```javascript
+// ./src/components/PlanToDos.js
+import { connect } from "react-redux";
+import { removeAll } from "../reducers/toDosReducer";
+
+/*
+...
+*/
+
+function PlanToDos({ loggedInUser, removeAll, len }) {
+  const [checkout, setCheckout] = useState(false);
+  return (
+    <div className="flex-column-center">
+      <H2>
+        {/* ... */}
+        <span
+          style={{ cursor: "pointer" }}
+          onClick={() => {
+            setCheckout((prev) => !prev);
+          }}
+        >
+          {loggedInUser.username}
+        {/* ... */}
+      </H2>
+      {!checkout ? null : <CheckOut />}
+      <ToDosContainer className="flex-column-center">
+        {/* ... */}
+        {!(len > 0) ? null : (
+          <PdyButton
+            variant="#ccc"
+            onClick={() => {
+              removeAll();
+            }}
+          >
+            Complete Your Day
+          </PdyButton>
+        )}
+      </ToDosContainer>
+    </div>
+  );
+}
+
+// _mapStateToProps_ receives the current state of reducers that the store now contains, and returns an object.
+const mapStateToProps = (state) => {
+  const todos = state.toDosReducer;
+  return { len: todos.length };
+};
+
+// _mapDispatchToProps_ receives _dispatch_ function that runs actions that are created inside redux slices, and returns an object.
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeAll: () => dispatch(removeAll()),
+  };
+};
+
+/*
+connect method connects these functions to the component.
+If the component only needs to have _mapDispatchToProps_, it could be like
+"export default connect(null, mapDispatchToProps)(PlanToDos)".
+*/
+export default connect(mapStateToProps, mapDispatchToProps)(PlanToDos);
 ```
