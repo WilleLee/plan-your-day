@@ -120,7 +120,7 @@ root.render(
 
 #### (3) Send States and Actions of Reducers as Props to React Components
 
-Then it is possible to access states or actions of reducers on react components, meaning that components could receive those data as props to themselves, and that process requires to build _mapStateToProps_ and _mapDispatchToProps_ functions that return objects that contain properties modifed by those states and actions so that _connect_ method from _react-redux_ module could them with the components.
+Then it is possible to access states or actions of reducers on react components, meaning that components could receive those data as props to themselves, and that process requires to build _mapStateToProps_ and _mapDispatchToProps_ functions that return objects that contain properties modifed by those states and actions so that _connect_ method from _react-redux_ module could connects them to the component.
 
 ```javascript
 // ./src/components/PlanToDos.js
